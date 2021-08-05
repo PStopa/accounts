@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: accounts
+  profiles:
+    active: production
+  datasource:
+    url: ${properties.datasource.url}
+    username: ${properties.datasource.username}
+    password: ${properties.datasource.password}
