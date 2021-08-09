@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +25,7 @@ import java.util.Optional;
 @Slf4j
 @RefreshScope
 @RestController
-@RequestMapping("/v1")
+@RequestMapping(value = "/v1", produces = { MediaType.APPLICATION_JSON_VALUE })
 @RequiredArgsConstructor
 public class AccountsController {
 
@@ -36,6 +37,7 @@ public class AccountsController {
 
     @GetMapping("/accounts")
     public GetAccountsResponse getAccounts(@RequestParam(required = false) Long customerId) {
+        log.info("Get accounts for customerId: {}", customerId);
         if(!allowGetAccounts) {
             log.info("Getting accounts is disabled");
             throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Getting accounts is disabled");

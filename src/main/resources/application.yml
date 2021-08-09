@@ -24,3 +24,5 @@ eureka:
   client: ${eureka-client}
 application:
   allow-get-accounts: ${accounts.allow-get-accounts}
+server:
+  port: 9999
